@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to About page */
+        .about-hero {
+            min-height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .about-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .about-content {
+            padding: 5rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .mission-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+        
+        .mission-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .mission-text h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .team-section {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .team-section h2 {
+            color: var(--accent-color);
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: var(--metallic-gradient);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-name {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            color: white;
+        }
+        
+        .member-role {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+        
+        .testimonials {
+            background: #1a1a1a;
+            padding: 5rem 10%;
+            text-align: center;
+        }
+        
+        .testimonials h2 {
+            color: var(--accent-color);
+            margin-bottom: 3rem;
+            font-size: 2rem;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 0 auto;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--metallic-gradient);
+            color: white;
+            border-radius: 50%;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .mission-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/200/80" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div>
+                <h1>About SereniTech</h1>
+                <p>Empowering the next generation of developers with curated learning resources</p>
+            </div>
+        </section>
+
+        <section class="about-content">
+            <div class="mission-section">
+                <div class="mission-image">
+                    <img src="/api/placeholder/600/400" alt="Our Mission">
+                </div>
+                <div class="mission-text">
+                    <h2>Our Mission</h2>
+                    <p>At SereniTech, we're driven by a simple yet powerful mission: to democratize coding education and make it accessible to everyone, regardless of background or experience level.</p>
+                    <p>We understand the overwhelming feeling that comes with learning to code. The internet is filled with resources, but finding the right ones can be challenging. That's why we've created CodeLearn - a platform that curates the best learning resources from around the web and delivers them in a structured, easy-to-follow format.</p>
+                    <p>Founded in 2023, our team of passionate developers and educators works tirelessly to identify the most effective tutorials, courses, and guides that truly help beginners transform into confident developers.</p>
+                </div>
+            </div>
+
+            <div class="mission-section">
+                <div class="mission-text">
+                    <h2>Our Approach</h2>
+                    <p>What sets CodeLearn apart is our human-centered approach to technical education. We don't just aggregate content - we carefully select resources that explain complex concepts in simple terms, feature hands-on projects, and build skills progressively.</p>
+                    <p>Our platform is designed to guide you through your entire learning journey, from writing your first line of code to building complex applications. We believe in learning by doing, which is why our curated resources emphasize practical projects and real-world applications.</p>
+                    <p>Whether you're interested in web development, data science, mobile applications, or any other coding discipline, we've got you covered with a roadmap tailored to your goals.</p>
+                </div>
+                <div class="mission-image">
+                    <img src="/api/placeholder/600/400" alt="Our Approach">
+                </div>
+            </div>
+
+            <div class="team-section">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <img src="/api/placeholder/150/150" alt="Ayush Rathore">
+                        </div>
+                        <h3 class="member-name">Ayush Rathore</h3>
+                        <p class="member-role">Founder & Lead Developer</p>
+                        <p>Passionate about creating accessible coding education for everyone. Specializes in full-stack development and has a knack for explaining complex concepts in simple terms.</p>
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/ayush.rathore27?igsh=ZmlqaWNhcG9hYXgx" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/ayushrathore1" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/ayushrathore1" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://x.com/ayushrathore_27" target="_blank"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-img">
+                            <img src="/api/placeholder/150/150" alt="Rahul Sharma">
+                        </div>
+                        <h3 class="member-name">Rahul Sharma</h3>
+                        <p class="member-role">Content Director</p>
+                        <p>With a background in education and computer science, Rahul curates our learning paths and ensures our content meets the highest educational standards.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-img">
+                            <img src="/api/placeholder/150/150" alt="Priya Patel">
+                        </div>
+                        <h3 class="member-name">Priya Patel</h3>
+                        <p class="member-role">UX/UI Designer</p>
+                        <p>Priya ensures that CodeLearn's interface is intuitive, accessible, and enjoyable to use. She believes that good design can make learning more effective.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-img">
+                            <img src="/api/placeholder/150/150" alt="Amit Kumar">
+                        </div>
+                        <h3 class="member-name">Amit Kumar</h3>
+                        <p class="member-role">Community Manager</p>
+                        <p>Amit fosters our growing community of learners and mentors, organizing events, webinars, and coding challenges to enhance the learning experience.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-discord"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonials">
+                <h2>What Our Users Say</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial">
+                        <p class="testimonial-text">"CodeLearn completely transformed my learning journey. Before finding this platform, I was jumping from tutorial to tutorial without making real progress. The structured paths and curated content helped me build a solid foundation in web development and I landed my first dev job just 6 months after starting!"</p>
+                        <p class="testimonial-author">Sneha R., Front-end Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About CodeLearn</h3>
+                <p>SereniTech's CodeLearn is your gateway to becoming a skilled developer through curated learning resources, structured paths, and community support.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@serenitech.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Silicon Valley, CA 94043</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/ayushrathore_27"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/ayush.rathore27?igsh=ZmlqaWNhcG9hYXgx"><i class="fab fa-instagram"></i></a>
+                    <a href="https://github.com/ayushrathore1"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.linkedin.com/in/ayushrathore1"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="contact-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 @serenitech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

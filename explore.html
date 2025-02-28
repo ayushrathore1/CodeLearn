@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to Explore page */
+        .explore-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .explore-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--accent-color);
+            color: #121212;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .search-btn:hover {
+            background: #00b8e6;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .topics-section {
+            padding: 5rem 5%;
+        }
+        
+        .topics-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-tab {
+            padding: 0.7rem 1.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-tab:hover, .filter-tab.active {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: var(--metallic-hover);
+        }
+        
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .topic-card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .topic-thumbnail {
+            height: 200px;
+            position: relative;
+        }
+        
+        .topic-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .topic-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 1rem;
+            color: white;
+        }
+        
+        .topic-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: #121212;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .topic-content {
+            padding: 1.5rem;
+        }
+        
+        .topic-content h3 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .topic-content p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .topic-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .topic-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .topic-link:hover {
+            background: var(--metallic-hover);
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .explore-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .topics-section {
+                padding: 3rem 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/200/80" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html" class="active">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="explore-hero">
+            <div>
+                <h1>Explore Learning Paths</h1>
+                <p>Discover curated resources to help you master coding skills</p>
+                <div class="search-container">
+                    <input type="text" class="search-bar" placeholder="Search for topics, languages, or technologies...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="topics-section">
+            <h2>Popular Learning Paths</h2>
+            <div class="filter-tabs">
+                <div class="filter-tab active">All Topics</div>
+                <div class="filter-tab">Beginner</div>
+                <div class="filter-tab">Intermediate</div>
+                <div class="filter-tab">Advanced</div>
+            </div>
+            <div class="topic-grid">
+                <!-- Web Development -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Web Development">
+                        <div class="topic-badge">Most Popular</div>
+                        <div class="topic-overlay">
+                            <h3>Web Development</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Web Development</h3>
+                        <p>Learn to build responsive, interactive websites using modern technologies like HTML5, CSS3, JavaScript and popular frameworks.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 45+ Videos</span>
+                            <span><i class="fas fa-book"></i> 12 Articles</span>
+                        </div>
+                        <a href="webdev.html" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Machine Learning -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Machine Learning">
+                        <div class="topic-overlay">
+                            <h3>Machine Learning</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Machine Learning</h3>
+                        <p>Dive into the world of AI and machine learning with foundational concepts, algorithms, and hands-on projects.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 35+ Videos</span>
+                            <span><i class="fas fa-book"></i> 10 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Data Science -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Data Science">
+                        <div class="topic-overlay">
+                            <h3>Data Science</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Data Science</h3>
+                        <p>Master data analysis, visualization, and interpretations using Python, R, and industry-standard tools and libraries.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 30+ Videos</span>
+                            <span><i class="fas fa-book"></i> 15 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Cloud Computing -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Cloud Computing">
+                        <div class="topic-overlay">
+                            <h3>Cloud Computing</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Cloud Computing</h3>
+                        <p>Learn cloud architecture, deployment, and management with AWS, Azure, Google Cloud and DevOps practices.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 25+ Videos</span>
+                            <span><i class="fas fa-book"></i> 8 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- App Development -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="App Development">
+                        <div class="topic-overlay">
+                            <h3>App Development</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>App Development</h3>
+                        <p>Build mobile applications for iOS and Android using React Native, Flutter, Swift, or Kotlin.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 40+ Videos</span>
+                            <span><i class="fas fa-book"></i> 15 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Git/GitHub -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Git & GitHub">
+                        <div class="topic-overlay">
+                            <h3>Git & GitHub</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Git & GitHub</h3>
+                        <p>Master version control, collaboration workflows, and best practices for code management.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 15+ Videos</span>
+                            <span><i class="fas fa-book"></i> 10 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Data Structures & Algorithms -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="DSA">
+                        <div class="topic-badge">Job Ready</div>
+                        <div class="topic-overlay">
+                            <h3>Data Structures & Algorithms</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Data Structures & Algorithms</h3>
+                        <p>Build a strong foundation in problem-solving, algorithmic thinking, and optimal data structure usage.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 50+ Videos</span>
+                            <span><i class="fas fa-book"></i> 20 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- C++ -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="C++">
+                        <div class="topic-overlay">
+                            <h3>C++</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>C++</h3>
+                        <p>Learn this powerful language for systems programming, game development, and performance-critical applications.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 40+ Videos</span>
+                            <span><i class="fas fa-book"></i> 15 Articles</span>
+                        </div>
+                        <a href="#" class="topic-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- JavaScript -->
+                <div class="topic-card">
+                    <div class="topic-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="JavaScript">
+                        <div class="topic-badge">Trending</div>
+                        <div class="topic-overlay">
+                            <h3>JavaScript</h3>
+                        </div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>JavaScript</h3>
+                        <p>Master the language of the web with modern ES6+ features, frameworks, and full-stack development.</p>
+                        <div class="topic-meta">
+                            <span><i class="fas fa-video"></i> 60+ Videos</span>
+                            <span><i

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Development - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to fullstack page */
+        .fullstack-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .fullstack-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .fullstack-intro {
+            max-width: 800px;
+            margin: 3rem auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .fullstack-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .fullstack-intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #bbb;
+            margin-bottom: 2rem;
+        }
+        
+        .course-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+        
+        .course-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .course-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .course-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #333;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-color);
+        }
+        
+        .course-thumbnail {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .course-card:hover .course-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .course-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .course-card:hover .course-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        
+        .course-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .course-content p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .course-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .course-tag {
+            padding: 0.3rem 0.7rem;
+            background: rgba(0, 191, 255, 0.1);
+            color: var(--accent-color);
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .course-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .course-link:hover {
+            background: var(--metallic-hover);
+            transform: translateY(-3px);
+        }
+        
+        .roadmap-section {
+            padding: 4rem 5%;
+        }
+        
+        .roadmap-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .roadmap-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .roadmap-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--accent-color);
+            transform: translateX(-50%);
+        }
+        
+        .roadmap-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+        }
+        
+        .roadmap-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 30px;
+            padding-right: 0;
+            margin-left: 50%;
+        }
+        
+        .roadmap-content {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            width: 100%;
+            transition: var(--transition);
+        }
+        
+        .roadmap-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .roadmap-item:nth-child(even) .roadmap-content:hover {
+            border-left: none;
+            border-right: 3px solid var(--accent-color);
+        }
+        
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .roadmap-content h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .roadmap-content p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .tech-stack-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+        
+        .tech-stack-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .tech-stack-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .tech-stack-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .tech-stack-item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .tech-stack-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tech-stack-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .tech-stack-item h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .tech-stack-item p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .fullstack-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .roadmap-line {
+                left: 20px;
+            }
+            
+            .roadmap-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+            
+            .roadmap-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 50px;
+            }
+            
+            .roadmap-item::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="codelearn.png" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="fullstack-hero">
+            <div>
+                <h1>Full-Stack Development</h1>
+                <p>Master both frontend and backend to build complete web applications from scratch</p>
+            </div>
+        </section>
+
+        <section class="fullstack-intro">
+            <h2>Become a Full-Stack Developer</h2>
+            <p>Full-stack development encompasses both frontend and backend technologies, allowing you to build complete web applications. As a full-stack developer, you'll have the versatility to work on all aspects of web development, from crafting beautiful user interfaces to designing robust server architectures and databases.</p>
+            <a href="#courses" class="course-link">Explore Courses</a>
+        </section>
+
+        <section id="courses" class="course-section">
+            <h2>Featured Full-Stack Courses</h2>
+            <p class="course-description">Start your full-stack journey with these comprehensive video tutorials</p>
+            
+            <div class="course-grid">
+                <!-- Course 1: MERN Stack -->
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="MERN Stack Course">
+                        <div class="course-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3>MERN Stack Masterclass</h3>
+                        <p>Build a complete application using MongoDB, Express, React, and Node.js. Learn how to connect frontend and backend seamlessly.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 15:45:33</span>
+                            <span><i class="fas fa-user"></i> Brad Traversy</span>
+                        </div>
+                        <div class="course-tags">
+                            <span class="course-tag">MongoDB</span>
+                            <span class="course-tag">Express</span>
+                            <span class="course-tag">React</span>
+                            <span class="course-tag">Node.js</span>
+                        </div>
+                        <a href="#" class="course-link">Watch Now</a>
+                    </div>
+                </div>
+                
+                <!-- Course 2: Full-Stack Authentication -->
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Authentication Course">
+                        <div class="course-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Full-Stack Authentication</h3>
+                        <p>Learn how to implement secure user authentication and authorization in your full-stack applications with JWT and OAuth.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 6:22:14</span>
+                            <span><i class="fas fa-user"></i> Angela Yu</span>
+                        </div>
+                        <div class="course-tags">
+                            <span class="course-tag">JWT</span>
+                            <span class="course-tag">OAuth</span>
+                            <span class="course-tag">Security</span>
+                            <span class="course-tag">Authentication</span>
+                        </div>
+                        <a href="#" class="course-link">Watch Now</a>
+                    </div>
+                </div>
+                
+                <!-- Course 3: Deployment & DevOps -->
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Deployment Course">
+                        <div class="course-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Deployment & DevOps for Web Apps</h3>
+                        <p>Master the process of deploying and maintaining full-stack applications using modern DevOps practices and tools.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 8:47:21</span>
+                            <span><i class="fas fa-user"></i> Colt Steele</span>
+                        </div>
+                        <div class="course-tags">
+                            <span class="course-tag">Docker</span>
+                            <span class="course-tag">CI/CD</span>
+                            <span class="course-tag">AWS</span>
+                            <span class="course-tag">Heroku</span>
+                        </div>
+                        <a href="#" class="course-link">Watch Now</a>
+                    </div>
+                </div>
+                
+                <!-- Course 4: GraphQL -->
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="GraphQL Course">
+                        <div class="course-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3>GraphQL with Node.js & React</h3>
+                        <p>Learn how to build efficient APIs with GraphQL and integrate them with React on the frontend for a modern full-stack experience.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 10:15:07</span>
+                            <span><i class="fas fa-user"></i> Max Schwarzmüller</span>
+                        </div>
+                        <div class="course-tags">
+                            <span class="course-tag">GraphQL</span>
+                            <span class="course-tag">Apollo</span>
+                            <span class="course-tag">API Design</span>
+                            <span class="course-tag">React</span>
+                        </div>
+                        <a href="#" class="course-link">Watch Now</a>
+                    </div>
+                </div>
+                
+                <!-- Course 5: Testing -->
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Testing Course">
+                        <div class="course-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Full-Stack Testing Masterclass</h3>
+                        <p>Learn comprehensive testing strategies for your full-stack applications, including unit, integration, and end-to-end testing.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 7:32:49</span>
+                            <span><i class="fas fa-user"></i> Kent C. Dodds</span>
+                        </div>
+                        <div class="course-tags">
+                            <span class="course-tag">Jest</span>
+                            <span class="course-tag">React Testing Library</span>
+                            <span class="course-tag">Cypress</span>
+                            <span class="course-tag">Mocha</span>
+                        </div>
+                        <a href="#" class="course-link">Watch Now</a>
+                    </div>
+                </div>
+                
+                <!-- Course 6: Real-time Applications -->
+                <div class="course-card">
+                    <div class="course-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Real-time Apps Course">
+                        <div class="course-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="course-content">
+                        <h3>Building Real-time Applications</h3>
+                        <p>Create dynamic, real-time web applications using WebSockets, Socket.io, and other modern technologies for instant data updates.</p>
+                        <div class="course-meta">
+                            <span><i class="fas fa-clock"></i> 9:18:33</span>
+                            <span><i class="fas fa-user"></i> Wes Bos</span>
+                        </div>
+                        <div class="course-tags">
+                            <span class="course-tag">WebSockets</span>
+                            <span class="course-tag">Socket.io</span>
+                            <span class="course-tag">Firebase</span>
+                            <span class="course-tag">Real-time</span>
+                        </div>
+                        <a href="#" class="course-link">Watch Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="roadmap-section">
+            <h2>Full-Stack Development Roadmap</h2>
+            <div class="roadmap-container">
+                <div class="roadmap-line"></div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>1. Frontend Fundamentals</h3>
+                        <p>Master HTML, CSS, and JavaScript to build the visual components of your applications. Learn responsive design principles and modern CSS frameworks.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>2. Frontend Frameworks</h3>
+                        <p>Learn a modern JavaScript framework like React, Angular, or Vue.js to build dynamic and interactive user interfaces with component-based architecture.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>3. Backend Basics</h3>
+                        <p>Understand server-side programming with Node.js, Express, or other backend technologies. Learn how to handle HTTP requests and create RESTful APIs.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>4. Database Management</h3>
+                        <p>Work with both SQL and NoSQL databases like MongoDB, PostgreSQL, or MySQL. Learn data modeling, querying, and database optimization techniques.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>5. Authentication & Security</h3>
+                        <p>Implement secure user authentication and authorization systems. Learn about JWT, OAuth, and best practices for web application security.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>6. API Development</h3>
+                        <p>Master REST and GraphQL API design. Learn how to create well-documented, efficient, and secure APIs for your applications.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>7. Deployment & DevOps</h3>
+                        <p>Learn how to deploy your applications to production. Understand containerization with Docker, CI/CD pipelines, and cloud services like AWS or Heroku.</p>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-content">
+                        <h3>8. Testing & Quality Assurance</h3>
+                        <p>Implement comprehensive testing strategies including unit, integration, and end-to-end testing to ensure your applications are robust and reliable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tech-stack-section">
+            <h2>Popular Full-Stack Tech Stacks</h2>
+            <p class="tech-stack-description">Explore these commonly used technology combinations for full-stack development</p>
+            
+            <div class="tech-stack-container">
+                <div class="tech-stack-item">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>MERN Stack</h3>
+                    <p>MongoDB, Express, React, Node.js</p>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-vuejs"></i>
+                    </div>
+                    <h3>MEVN Stack</h3>
+                    <p>MongoDB, Express, Vue.js, Node.js</p>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-angular"></i>
+                    </div>
+                    <h3>MEAN Stack</h3>
+                    <p>MongoDB, Express, Angular, Node.js</p>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-laravel"></i>
+                    </div>
+                    <h3>LAMP Stack</h3>
+                    <p>Linux, Apache, MySQL, PHP</p>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <div class="tech-stack-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Firebase Stack</h3>
+                    <p>Firebase, React/Angular/Vue</p>
+                </div>
+                
+                <div class="tech-stack-item">
+                    <div class="tech-stack-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python Stack</h3>
+                    <p>Django/Flask, PostgreSQL, React/Vue</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About CodeLearn</h3>
+                <p>
+                    We provide aspiring developers with the best learning resources from
+                    around the web, curated by industry experts.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@codelearn.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Silicon
+                    Valley, CA 94043
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="contact-form">
+                    <input type="email" placeholder="Enter your email" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 @serenitech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Make course cards clickable
+        const courseCards = document.querySelectorAll('.course-card');
+        courseCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('course-link')) {
+                    const link = this.querySelector('.course-link');
+                    if (link) link.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

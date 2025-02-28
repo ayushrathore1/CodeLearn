@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Development - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to Backend page */
+        .backend-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .backend-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .track-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .track-tab {
+            position: relative;
+            padding: 1rem 2rem;
+            background: var(--metallic-gradient);
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .track-tab:hover, .track-tab.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: var(--metallic-hover);
+        }
+        
+        .tech-stack-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+        
+        .tech-stack-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .tech-stack-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .tech-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #333;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-color);
+        }
+        
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .tech-card p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .curriculum-section {
+            padding: 4rem 5%;
+        }
+        
+        .curriculum-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .module-accordion {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .module-item {
+            margin-bottom: 1.5rem;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .module-header {
+            padding: 1.5rem;
+            background: var(--metallic-gradient);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .module-header h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        
+        .module-header i {
+            transition: transform 0.3s ease;
+        }
+        
+        .module-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .module-item.active .module-content {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .module-item.active .module-header i {
+            transform: rotate(180deg);
+        }
+        
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .lesson-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #333;
+            color: #bbb;
+        }
+        
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+        
+        .lesson-title {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .featured-videos-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+        
+        .featured-videos-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .featured-videos-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .video-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .video-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover .video-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .video-content {
+            padding: 1.5rem;
+        }
+        
+        .video-content h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .video-content p {
+            color: #bbb;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .instructor-section {
+            padding: 4rem 5%;
+        }
+        
+        .instructor-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .instructor-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .instructor-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .instructor-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+        
+        .instructor-title {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .instructor-bio {
+            text-align: center;
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .instructor-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--metallic-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-5px);
+            background: var(--metallic-hover);
+        }
+        
+        @media (max-width: 768px) {
+            .backend-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tech-grid,
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="codelearn.png" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="backend-hero">
+            <div>
+                <h1>Backend Development</h1>
+                <p>Master server-side programming, databases, and API development</p>
+            </div>
+        </section>
+
+        <section class="track-container">
+            <div class="track-intro">
+                <h2>Backend Development Path</h2>
+                <p>Backend development is the foundation of web applications, focusing on server-side logic, database interactions, and the creation of APIs that power modern web experiences. This track will equip you with the skills to build robust, scalable, and secure backend systems.</p>
+            </div>
+            
+            <div class="track-tabs">
+                <a href="frontend.html" class="track-tab">
+                    <i class="fas fa-palette"></i> Frontend Development
+                </a>
+                <a href="backend.html" class="track-tab active">
+                    <i class="fas fa-server"></i> Backend Development
+                </a>
+                <a href="fullstack.html" class="track-tab">
+                    <i class="fas fa-code-branch"></i> Full-Stack Development
+                </a>
+            </div>
+        </section>
+
+        <section class="tech-stack-section">
+            <h2>Backend Technology Stack</h2>
+            <p class="tech-stack-intro">Explore the essential technologies and frameworks for modern backend development</p>
+            
+            <div class="tech-grid">
+                <!-- Node.js -->
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3>Node.js</h3>
+                    <p>JavaScript runtime built on Chrome's V8 engine for building fast and scalable server-side applications.</p>
+                </div>
+                
+                <!-- Express.js -->
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h3>Express.js</h3>
+                    <p>Fast, unopinionated, minimalist web framework for Node.js to build APIs and web applications.</p>
+                </div>
+                
+                <!-- MongoDB -->
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>MongoDB</h3>
+                    <p>NoSQL database that uses JSON-like documents with optional schemas for flexible data storage.</p>
+                </div>
+                
+                <!-- SQL -->
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <h3>SQL Databases</h3>
+                    <p>Relational database systems like MySQL, PostgreSQL for structured data storage and queries.</p>
+                </div>
+                
+                <!-- API Development -->
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>API Development</h3>
+                    <p>Create RESTful and GraphQL APIs that connect frontend interfaces with backend services.</p>
+                </div>
+                
+                <!-- Authentication -->
+                <div class="tech-card">
+                    <div class="tech-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Authentication</h3>
+                    <p>Implement secure user authentication and authorization systems using JWT, OAuth, and more.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="curriculum-section">
+            <h2>Backend Development Curriculum</h2>
+            
+            <div class="module-accordion">
+                <!-- Module 1 -->
+                <div class="module-item active">
+                    <div class="module-header">
+                        <h3>Module 1: Introduction to Backend Development</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="module-content">
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>What is Backend Development?</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 15:30</span>
+                                    <span><i class="fas fa-file-alt"></i> Notes</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Client-Server Architecture</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 22:15</span>
+                                    <span><i class="fas fa-file-alt"></i> Notes</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>HTTP Protocol Basics</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 18:45</span>
+                                    <span><i class="fas fa-file-alt"></i> Notes</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Setting Up Your Development Environment</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 25:10</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Module 2 -->
+                <div class="module-item">
+                    <div class="module-header">
+                        <h3>Module 2: Node.js Fundamentals</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="module-content">
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Introduction to Node.js</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 28:45</span>
+                                    <span><i class="fas fa-file-alt"></i> Notes</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Node.js Module System</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 32:20</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Asynchronous Programming with Node.js</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 45:15</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Building a Simple HTTP Server</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 38:30</span>
+                                    <span><i class="fas fa-code"></i> Project</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Module 3 -->
+                <div class="module-item">
+                    <div class="module-header">
+                        <h3>Module 3: Express.js Framework</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="module-content">
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Introduction to Express.js</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 24:50</span>
+                                    <span><i class="fas fa-file-alt"></i> Notes</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Routing in Express.js</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 35:15</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Middleware in Express.js</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 40:25</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Building a RESTful API with Express</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 55:10</span>
+                                    <span><i class="fas fa-code"></i> Project</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Module 4 -->
+                <div class="module-item">
+                    <div class="module-header">
+                        <h3>Module 4: Database Integration</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="module-content">
+                        <ul class="lesson-list">
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Introduction to Databases</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 28:40</span>
+                                    <span><i class="fas fa-file-alt"></i> Notes</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>MongoDB & Mongoose ODM</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 48:35</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>SQL Databases with Node.js</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 52:20</span>
+                                    <span><i class="fas fa-code"></i> Exercise</span>
+                                </div>
+                            </li>
+                            <li class="lesson-item">
+                                <div class="lesson-title">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Building a CRUD API with Database Integration</span>
+                                </div>
+                                <div class="lesson-meta">
+                                    <span><i class="fas fa-clock"></i> 1:15:30</span>
+                                    <span><i class="fas fa-code"></i> Project</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-videos-section">
+            <h2>Featured Backend Development Tutorials</h2>
+            <p class="featured-videos-intro">Start with these popular videos to begin your backend development journey</p>
+            
+            <div class="videos-grid">
+                <!-- Video 1 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Node.js Crash Course">
+                        <div class="video-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">1:25:45</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Node.js Crash Course</h3>
+                        <p>Learn the fundamentals of Node.js and server-side JavaScript development.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-user"></i> Brad Traversy</span>
+                            <span><i class="fas fa-heart"></i> 15.2K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Express.js Tutorial">
+                        <div class="video-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">58:20</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Express.js for Beginners</h3>
+                        <p>Build a complete API with Express.js, the most popular Node.js framework.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-user"></i> Academind</span>
+                            <span><i class="fas fa-heart"></i> 12.8K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="MongoDB Tutorial">
+                        <div class="video-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">1:12:35</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>MongoDB Complete Guide</h3>
+                        <p>Master MongoDB database for modern backend applications with Mongoose ODM.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-user"></i> Net Ninja</span>
+                            <span><i class="fas fa-heart"></i> 10.4K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 4 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="REST API Development">
+                        <div class="video-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">2:05:15</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>Build a Complete REST API</h3>
+                        <p>Create a production-ready RESTful API with Node.js, Express, and MongoDB.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-user"></i> Traversy Media</span>
+                            <span><i class="fas fa-heart"></i> 18.6K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 5 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="Authentication Tutorial">
+                        <div class="video-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">1:42:50</div>
+                    </div>
+                    <div class="video-content">
+                        <h3>JWT Authentication</h3>
+                        <p>Implement secure authentication in Node.js applications using JSON Web Tokens.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-user"></i> Academind</span>
+                            <span><i class="fas fa-heart"></i> 14.1K</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video 6 -->
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <img src="/api/placeholder/350/200" alt="SQL Database Tutorial">
+                        <div class="video-play-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="video-duration">1:38:25</div>
+                    </div

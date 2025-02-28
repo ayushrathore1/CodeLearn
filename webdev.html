@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to WebDev page */
+        .webdev-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .webdev-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .track-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .track-tab {
+            position: relative;
+            padding: 1rem 2rem;
+            background: var(--metallic-gradient);
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .track-tab:hover, .track-tab.active {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: var(--metallic-hover);
+        }
+        
+        .track-container {
+            padding: 2rem 5%;
+        }
+        
+        .track-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            text-align: center;
+        }
+        
+        .track-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .track-intro p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #bbb;
+        }
+        
+        .tracks-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+        
+        .tracks-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .track-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #333;
+            position: relative;
+        }
+        
+        .track-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: var(--accent-color);
+        }
+        
+        .track-banner {
+            height: 180px;
+            background: linear-gradient(135deg, #0a192f, #112240);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .track-icon {
+            font-size: 5rem;
+            color: var(--accent-color);
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
+        }
+        
+        .track-banner::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.2) 0%, transparent 70%);
+            bottom: -50px;
+            animation: pulse 4s infinite ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+        
+        .track-content {
+            padding: 1.5rem;
+        }
+        
+        .track-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .track-content p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .track-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .track-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .track-tag {
+            padding: 0.3rem 0.7rem;
+            background: rgba(0, 191, 255, 0.1);
+            color: var(--accent-color);
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .track-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .track-link:hover {
+            background: var(--metallic-hover);
+            transform: translateY(-3px);
+        }
+        
+        .featured-section {
+            padding: 4rem 5%;
+        }
+        
+        .featured-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .featured-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            color: #bbb;
+            line-height: 1.6;
+        }
+        
+        .video-carousel {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .carousel-track {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-card {
+            min-width: 350px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            flex: 1;
+        }
+        
+        .carousel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .carousel-thumbnail {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-card:hover .carousel-thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .carousel-play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .carousel-card:hover .carousel-play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        
+        .carousel-content {
+            padding: 1.5rem;
+        }
+        
+        .carousel-content h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .carousel-content p {
+            color: #bbb;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .carousel-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--metallic-gradient);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .carousel-btn:hover {
+            background: var(--metallic-hover);
+            transform: scale(1.1);
+        }
+        
+        .resources-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+        
+        .resources-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .resources-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .resource-item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .resource-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .resource-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--metallic-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .resource-item h3 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .resource-item p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+        
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: 500;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .resource-link:hover {
+            color: #00b8e6;
+            gap: 0.7rem;
+        }
+        
+        @media (max-width: 768px) {
+            .webdev-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tracks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-card {
+                min-width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="codelearn.png" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html" class="active">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="webdev-hero">
+            <div>
+                <h1>Web Development</h1>
+                <p>Master the skills to build modern websites and web applications</p>
+            </div>
+        </section>
+
+        <section class="track-container">
+            <div class="track-intro">
+                <h2>Choose Your Learning Path</h2>
+                <p>Web development encompasses various specializations. You can focus on frontend development (what users see), backend development (server-side logic), or become a full-stack developer mastering both worlds. Select the path that aligns with your goals.</p>
+            </div>
+            
+            <div class="track-tabs">
+                <a href="frontend.html" class="track-tab">
+                    <i class="fas fa-palette"></i> Frontend Development
+                </a>
+                <a href="backend.html" class="track-tab">
+                    <i class="fas fa-server"></i> Backend Development
+                </a>
+                <a href="fullstack.html" class="track-tab">
+                    <i class="fas fa-code-branch"></i> Full-Stack Development
+                </a>
+            </div>
+        </section>
+
+        <section class="tracks-section">
+            <h2>Web Development Tracks</h2>
+            <div class="tracks-grid">
+                <!-- Frontend Card -->
+                <div class="track-card">
+                    <div class="track-banner">
+                        <i class="fas fa-laptop-code track-icon"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>Frontend Development</h3>
+                        <p>Learn to create beautiful, interactive user interfaces and responsive web designs with modern frontend technologies.</p>
+                        <div class="track-meta">
+                            <span><i class="fas fa-video"></i> 45+ Videos</span>
+                            <span><i class="fas fa-clock"></i> ~20 Hours</span>
+                        </div>
+                        <div class="track-tags">
+                            <span class="track-tag">HTML5</span>
+                            <span class="track-tag">CSS3</span>
+                            <span class="track-tag">JavaScript</span>
+                            <span class="track-tag">React</span>
+                            <span class="track-tag">UI/UX</span>
+                        </div>
+                        <a href="frontend.html" class="track-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Backend Card -->
+                <div class="track-card">
+                    <div class="track-banner">
+                        <i class="fas fa-database track-icon"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>Backend Development</h3>
+                        <p>Dive into server-side programming, databases, and APIs to power web applications with robust backends.</p>
+                        <div class="track-meta">
+                            <span><i class="fas fa-video"></i> 38+ Videos</span>
+                            <span><i class="fas fa-clock"></i> ~25 Hours</span>
+                        </div>
+                        <div class="track-tags">
+                            <span class="track-tag">Node.js</span>
+                            <span class="track-tag">Express</span>
+                            <span class="track-tag">MongoDB</span>
+                            <span class="track-tag">SQL</span>
+                            <span class="track-tag">APIs</span>
+                        </div>
+                        <a href="backend.html" class="track-link">Start Learning</a>
+                    </div>
+                </div>
+                
+                <!-- Full-Stack Card -->
+                <div class="track-card">
+                    <div class="track-banner">
+                        <i class="fas fa-layer-group track-icon"></i>
+                    </div>
+                    <div class="track-content">
+                        <h3>Full-Stack Development</h3>
+                        <p>Master both frontend and backend to become a versatile developer capable of building complete web applications.</p>
+                        <div class="track-meta">
+                            <span><i class="fas fa-video"></i> 60+ Videos</span>
+                            <span><i class="fas fa-clock"></i> ~40 Hours</span>
+                        </div>
+                        <div class="track-tags">
+                            <span class="track-tag">MERN Stack</span>
+                            <span class="track-tag">DevOps</span>
+                            <span class="track-tag">Authentication</span>
+                            <span class="track-tag">Deployment</span>
+                            <span class="track-tag">Testing</span>
+                        </div>
+                        <a href="fullstack.html" class="track-link">Start Learning</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h2>Featured Web Development Tutorials</h2>
+            <p class="featured-description">Start with these popular videos to begin your web development journey</p>
+            
+            <div class="video-carousel">
+                <div class="carousel-track">
+                    <!-- Video 1 -->
+                    <div class="carousel-card">
+                        <div class="carousel-thumbnail">
+                            <img src="chaiaurhtml.jpg" alt="HTML Course">
+                            <div class="carousel-play-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="carousel-content">
+                            <h3>HTML Complete Course</h3>
+                            <p>Learn the foundations of web development with this comprehensive HTML tutorial.</p>
+                            <div class="carousel-meta">
+                                <span><i class="fas fa-clock"></i> 11:01</span>
+                                <span><i class="fas fa-user"></i> Hitesh Choudhary</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2 -->
+                    <div class="carousel-card">
+                        <div class="carousel-thumbnail">
+                            <img src="/api/placeholder/350/200" alt="CSS Mastery">
+                            <div class="carousel-play-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="carousel-content">
+                            <h3>CSS Crash Course</h3>
+                            <p>Master modern CSS techniques to style your websites beautifully.</p>
+                            <div class="carousel-meta">
+                                <span><i class="fas fa-clock"></i> 45:25</span>
+                                <span><i class="fas fa-user"></i> Brad Traversy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 3 -->
+                    <div class="carousel-card">
+                        <div class="carousel-thumbnail">
+                            <img src="/api/placeholder/350/200" alt="JavaScript Basics">
+                            <div class="carousel-play-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                        </div>
+                        <div class="carousel-content">
+                            <h3>JavaScript for Beginners</h3>
+                            <p>Learn the fundamentals of JavaScript programming for web development.</p>
+                            <div class="carousel-meta">
+                                <span><i class="fas fa-clock"></i> 1:22:14</span>
+                                <span><i class="fas fa-user"></i> Mosh Hamedani</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="resources-section">
+            <h2>Additional Resources</h2>
+            <div class="resources-list">
+                <!-- Documentation -->
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Documentation</h3>
+                    <p>Access official documentation for HTML, CSS, JavaScript, and popular frameworks to deepen your understanding.</p>
+                    <a href="#" class="resource-link">
+                        Explore Resources <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Practice Projects -->
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Practice Projects</h3>
+                    <p>Reinforce your learning with hands-on projects ranging from beginner to advanced levels.</p>
+                    <a href="#" class="resource-link">
+                        Browse Projects <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Community Forums -->
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Join our thriving community of developers to get help, share knowledge, and collaborate on projects.</p>
+                    <a href="#" class="resource-link">
+                        Join Community <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Interview Prep -->
+                <div class="resource-item">
+                    <div class="resource-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Interview Preparation</h3>
+                    <p>Prepare for web development interviews with practice questions, mock interviews, and resume tips.</p>
+                    <a href="#" class="resource-link">
+                        Start Preparing <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About CodeLearn</h3>
+                <p>
+                    We provide aspiring developers with the best learning resources from
+                    around the web, curated by industry experts.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@codelearn.com</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Silicon
+                    Valley, CA 94043
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="contact-form">
+                    <input type="email" placeholder="Enter your email" required />
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 @serenitech. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselTrack = document.querySelector('.carousel-track');
+            const cards = document.querySelectorAll('.carousel-card');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            let currentIndex = 0;
+            const cardWidth = cards[0].offsetWidth + 24; // Card width + gap
+            const cardsToShow = Math.floor(carouselTrack.offsetWidth / cardWidth);
+            const maxIndex = cards.length - cardsToShow;
+            
+            function updateCarousel() {
+                const position = -currentIndex * cardWidth;
+                carouselTrack.style.transform = `translateX(${position}px)`;
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+            
+            // Make video cards clickable to play videos
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Replace with the actual video URL
+                    window.open("https://youtu.be/XmLOwJHFHf0?si=YWc6zqYP_pU1TFkx", "_blank");
+                });
+            });
+            
+            // Update carousel on window resize
+            window.addEventListener('resize', function() {
+                const newCardsToShow = Math.floor(carouselTrack.offsetWidth / cardWidth);
+                const newMaxIndex = cards.length - newCardsToShow;
+                
+                if (currentIndex > newMaxIndex) {
+                    currentIndex = newMaxIndex;
+                }
+                
+                updateCarousel();
+            });
+        });
+    </script>
+</body>
+</html>

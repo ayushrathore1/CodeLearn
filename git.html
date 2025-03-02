@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git & GitHub - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to GitHub page */
+        .github-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .github-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .content-section {
+            padding: 4rem 5%;
+        }
+        
+        .content-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .language-card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+        
+        .language-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .language-thumbnail {
+            height: 200px;
+            position: relative;
+        }
+        
+        .language-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .language-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .language-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .language-content p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .language-btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .language-btn:hover {
+            background: var(--metallic-hover);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer styles from contact page */
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 3rem 5%;
+            background: #121212;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section p {
+            color: #bbb;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-section .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: #333;
+            border-radius: 50%;
+            color: #fff;
+            transition: var(--transition);
+        }
+        
+        .footer-section .social-icons a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .footer-section form input {
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+            background: #333;
+            color: #fff;
+        }
+        
+        .footer-section form button {
+            padding: 0.8rem;
+            border: none;
+            background: var(--accent-color);
+            color: #121212;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .footer-section form button:hover {
+            background: #00b8e6;
+        }
+        
+        .footer-bottom {
+    text-align: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #333;
+}
+
+    .footer-bottom p {
+    color: #777;
+    }
+
+        @media (max-width: 768px) {
+            .github-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                padding: 3rem 5%;
+            }
+            
+            .language-grid {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/200/80" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="credit.html">Credits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="github-hero">
+            <div>
+                <h1>Git & GitHub Learning Path</h1>
+                <p>Master version control, collaboration workflows, and best practices for code management</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>Choose Your Language</h2>
+            <div class="language-grid">
+                <!-- English Card -->
+                <a href="git-english.html" class="language-card">
+                    <div class="language-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Git & GitHub in English">
+                    </div>
+                    <div class="language-content">
+                        <h3>English</h3>
+                        <p>Learn Git & GitHub fundamentals, collaborative workflows, and advanced techniques in English.</p>
+                        <div class="language-btn">Start Learning</div>
+                    </div>
+                </a>
+                
+                <!-- Hindi Card -->
+                <a href="git-hindi.html" class="language-card">
+                    <div class="language-thumbnail">
+                        <img src="/api/placeholder/400/200" alt="Git & GitHub in Hindi">
+                    </div>
+                    <div class="language-content">
+                        <h3>हिंदी (Hindi)</h3>
+                        <p>गिट और गिटहब की मूल बातें, सहयोगी कार्यप्रवाह और उन्नत तकनीकें हिंदी में सीखें।</p>
+                        <div class="language-btn">अभी सीखें</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About CodeLearn</h3>
+                <p>We provide aspiring developers with the best learning resources from around the web, curated by industry experts.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@codelearn.com</p>
+                <p><i class="fas fa-phone"></i> +91 6377805448</p>
+                <p><i class="fas fa-map-marker-alt"></i> JAIPUR, RAJASTHAN</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <form class="contact-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 @serenitech. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

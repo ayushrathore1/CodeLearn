@@ -1,0 +1,101 @@
+<!-- Add this right after the opening <body> tag -->
+<div id="page-loader" class="loader">
+    <div class="loader-content">
+        <div class="loader-circle"></div>
+        <div class="loader-text">Loading...</div>
+    </div>
+</div>
+
+<!-- Add this CSS to your existing <style> section -->
+<style>
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(12, 12, 12, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+        visibility: visible;
+    }
+
+    .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader-content {
+        text-align: center;
+        position: relative;
+    }
+
+    .loader-circle {
+        width: 60px;
+        height: 60px;
+        border: 5px solid var(--accent-color);
+        border-top: 5px solid transparent;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        position: relative;
+        margin: 0 auto 1rem;
+    }
+
+    .loader-circle::before {
+        content: '';
+        position: absolute;
+        inset: 5px;
+        border-radius: 50%;
+        background: var(--metallic-gradient);
+        opacity: 0.3;
+    }
+
+    .loader-text {
+        color: var(--accent-color);
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.7; }
+        50% { opacity: 1; }
+        100% { opacity: 0.7; }
+    }
+</style>
+
+<!-- Add this JavaScript at the end of your <body> tag -->
+<script>
+    // Show loader on page transition
+    document.addEventListener('DOMContentLoaded', function() {
+        const loader = document.getElementById('page-loader');
+        
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 300); // Small delay to ensure smooth transition
+        });
+
+        // Show loader when clicking navigation links
+        document.querySelectorAll('.navbar a, .track-tab').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Only show loader if not already on the target page
+                if (this.href !== window.location.href) {
+                    loader.classList.remove('hidden');
+                }
+            });
+        });
+    });
+</script>

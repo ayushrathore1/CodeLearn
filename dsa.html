@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Structures & Algorithms - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="dsa.js"></script>
+    <style>
+        /* Additional styles specific to DSA page */
+        .dsa-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .dsa-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .dsa-intro {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #ddd;
+        }
+        
+        .section-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        
+        .section-tab {
+            padding: 0.8rem 2rem;
+            background: var(--metallic-gradient);
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .section-tab:hover, .section-tab.active {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: var(--metallic-hover);
+        }
+        
+        .dsa-section {
+            padding: 4rem 5%;
+        }
+        
+        .dsa-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+        
+        .dsa-subsection {
+            margin-bottom: 5rem;
+        }
+        
+        .dsa-subsection:last-child {
+            margin-bottom: 0;
+        }
+        
+        .dsa-subsection h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .resource-card {
+            background: #1e1e1e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .resource-thumbnail {
+            height: 180px;
+            position: relative;
+        }
+        
+        .resource-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .resource-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent-color);
+            color: #121212;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .resource-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-content h4 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.3rem;
+        }
+        
+        .resource-content p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .resource-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .resource-link:hover {
+            background: var(--metallic-hover);
+            transform: translateY(-3px);
+        }
+        
+        .difficulty-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .difficulty-indicator span {
+            margin-left: 0.5rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .difficulty-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .beginner {
+            background-color: #4CAF50;
+        }
+        
+        .intermediate {
+            background-color: #FFC107;
+        }
+        
+        .advanced {
+            background-color: #F44336;
+        }
+        
+        @media (max-width: 768px) {
+            .dsa-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .dsa-section {
+                padding: 3rem 5%;
+            }
+            
+            .section-tab {
+                padding: 0.7rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/200/80" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="credit.html">Credits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dsa-hero">
+            <div>
+                <h1>Data Structures & Algorithms</h1>
+                <p class="dsa-intro">Master the fundamentals of computer science with our comprehensive DSA learning path. Build strong problem-solving skills that will prepare you for technical interviews and real-world programming challenges.</p>
+                <div class="section-tabs">
+                    <div class="section-tab active" onclick="scrollToSection('cpp-section')">C++</div>
+                    <div class="section-tab" onclick="scrollToSection('java-section')">Java</div>
+                    <div class="section-tab" onclick="scrollToSection('algorithms-section')">Algorithms</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cpp-section" class="dsa-section">
+            <h2>Learn DSA with C++</h2>
+            <div class="dsa-subsection">
+                <h3>C++ Fundamentals</h3>
+                <div class="resource-grid">
+                    <!-- C++ Basics -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="C++ Basics">
+                            <div class="resource-badge">Beginner</div>
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot beginner"></div>
+                                <span>Beginner</span>
+                            </div>
+                            <h4>C++ Basics for DSA</h4>
+                            <p>Learn the essential C++ syntax, data types, control structures, and functions needed for implementing data structures.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-video"></i> 15 Videos</span>
+                                <span><i class="fas fa-code"></i> 8 Practice Sets</span>
+                            </div>
+                            <a href="#" class="resource-link">Start Learning</a>
+                        </div>
+                    </div>
+                    
+                    <!-- STL in C++ -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="STL in C++">
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot intermediate"></div>
+                                <span>Intermediate</span>
+                            </div>
+                            <h4>Standard Template Library</h4>
+                            <p>Master built-in data structures in C++ including vectors, lists, maps, sets, and algorithms from the STL.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-video"></i> 12 Videos</span>
+                                <span><i class="fas fa-code"></i> 10 Practice Sets</span>
+                            </div>
+                            <a href="#" class="resource-link">Start Learning</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Memory Management -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="Memory Management">
+                            <div class="resource-badge">Critical</div>
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot advanced"></div>
+                                <span>Advanced</span>
+                            </div>
+                            <h4>Memory Management in C++</h4>
+                            <p>Understand pointers, references, dynamic memory allocation, and optimization techniques for efficient DSA implementations.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-video"></i> 10 Videos</span>
+                                <span><i class="fas fa-code"></i> 6 Practice Sets</span>
+                            </div>
+                            <a href="#" class="resource-link">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dsa-subsection">
+                <h3>C++ Data Structures</h3>
+                <div class="resource-grid">
+                    <!-- Linear Data Structures -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="Linear Data Structures">
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot intermediate"></div>
+                                <span>Intermediate</span>
+                            </div>
+                            <h4>Linear Data Structures in C++</h4>
+                            <p>Implementation and operations of arrays, linked lists, stacks, and queues with practical examples.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-video"></i> 20 Videos</span>
+                                <span><i class="fas fa-code"></i> 15 Practice Sets</span>
+                            </div>
+                            <a href="#" class="resource-link">Start Learning</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Trees and Graphs -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="Trees and Graphs">
+                            <div class="resource-badge">Interview Focus</div>
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot advanced"></div>
+                                <span>Advanced</span>
+                            </div>
+                            <h4>Trees and Graphs in C++</h4>
+                            <p>Master binary trees, BSTs, heaps, and graph representations with traversal algorithms implemented in C++.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-video"></i> 25 Videos</span>
+                                <span><i class="fas fa-code"></i> 18 Practice Sets</span>
+                            </div>
+                            <a href="#" class="resource-link">Start Learning</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Advanced Data Structures -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="Advanced Data Structures">
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot advanced"></div>
+                                <span>Advanced</span>
+                            </div>
+                            <h4>Advanced Data Structures</h4>
+                            <p>Learn specialized structures like Tries, Segment Trees, and Disjoint Set Union for competitive programming and interviews.</p>
+                            <div class="resource-meta">
+                                <span><i class="fas fa-video"></i> 18 Videos</span>
+                                <span><i class="fas fa-code"></i> 12 Practice Sets</span>
+                            </div>
+                            <a href="#" class="resource-link">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="java-section" class="dsa-section">
+            <h2>Learn DSA with Java</h2>
+            <div class="dsa-subsection">
+                <h3>Java Fundamentals</h3>
+                <div class="resource-grid">
+                    <!-- Java Basics -->
+                    <div class="resource-card">
+                        <div class="resource-thumbnail">
+                            <img src="/api/placeholder/400/200" alt="Java Basics">
+                            <div class="resource-badge">Beginner</div>
+                        </div>
+                        <div class="resource-content">
+                            <div class="difficulty-indicator">
+                                <div class="difficulty-dot beginner">

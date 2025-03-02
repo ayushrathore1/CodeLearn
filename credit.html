@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits - CodeLearn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Using similar styles from backend.html */
+        .credits-hero {
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/api/placeholder/1600/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .credits-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .credits-section {
+            padding: 4rem 5%;
+            background: #0c0c0c;
+        }
+
+        .credits-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+        }
+
+        .credits-container h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .credit-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #252525;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .credit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .credit-title {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .credit-description {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .credit-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .credit-link:hover {
+            text-decoration: underline;
+            color: white;
+        }
+
+        .thank-you-note {
+            text-align: center;
+            margin-top: 3rem;
+            color: #bbb;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .credits-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .credits-container {
+                padding: 1.5rem;
+            }
+            
+            .credit-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader from previous response -->
+    <div id="page-loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <img src="codelearn.png" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="credit.html">Credits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="credits-hero">
+            <div>
+                <h1>Credits</h1>
+                <p>Acknowledging the amazing resources that made CodeLearn possible</p>
+            </div>
+        </section>
+
+        <section class="credits-section">
+            <div class="credits-container">
+                <h2>Thank You to Our Resource Contributors</h2>
+
+                <div class="credit-item">
+                    <div class="credit-title">
+                        <i class="fas fa-font-awesome"></i>
+                        <span>Font Awesome</span>
+                    </div>
+                    <div class="credit-description">
+                        Providing us with an amazing collection of icons used throughout the CodeLearn platform.
+                        Their free icon set enhances our UI and user experience significantly.
+                    </div>
+                    <a href="https://fontawesome.com" target="_blank" class="credit-link">
+                        Visit Font Awesome <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="credit-item">
+                    <div class="credit-title">
+                        <i class="fas fa-images"></i>
+                        <span>Placeholder API</span>
+                    </div>
+                    <div class="credit-description">
+                        Offering placeholder images that help us maintain a professional look during development
+                        and testing phases of our platform.
+                    </div>
+                    <a href="https://placeholder.com" target="_blank" class="credit-link">
+                        Visit Placeholder <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="credit-item">
+                    <div class="credit-title">
+                        <i class="fas fa-code"></i>
+                        <span>Open Source Community</span>
+                    </div>
+                    <div class="credit-description">
+                        Special thanks to the countless developers who contribute to open-source projects like Node.js,
+                        Express.js, MongoDB, and others that form the backbone of our learning content.
+                    </div>
+                    <a href="https://github.com" target="_blank" class="credit-link">
+                        Explore GitHub <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+
+                <div class="thank-you-note">
+                    We deeply appreciate all contributors who have made their resources available,
+                    enabling us to create an engaging and educational platform for aspiring developers.
+                    Your work inspires us to keep building and teaching!
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Loader JavaScript from previous response
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('page-loader');
+            
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                }, 300);
+            });
+
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.href !== window.location.href) {
+                        loader.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

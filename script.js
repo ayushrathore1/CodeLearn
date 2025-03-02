@@ -217,3 +217,24 @@ style.textContent = `
 `;
 
 document.head.appendChild(style);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loader = document.getElementById("page-loader");
+
+  // Hide loader when page is fully loaded
+  window.addEventListener("load", function () {
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 300); // Small delay to ensure smooth transition
+  });
+
+  // Show loader when clicking navigation links
+  document.querySelectorAll(".navbar a, .track-tab").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      // Only show loader if not already on the target page
+      if (this.href !== window.location.href) {
+        loader.classList.remove("hidden");
+      }
+    });
+  });
+});

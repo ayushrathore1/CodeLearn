@@ -1,679 +1,751 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frontend Development - CodeLearn</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <script src="script.js"></script>
     <style>
-        /* Styles specific to Frontend page */
-        .frontend-hero {
-            min-height: 40vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1600/800') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .frontend-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        
-        .frontend-hero p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            color: #eee;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
-        .track-overview {
-            padding: 4rem 5%;
-            text-align: center;
-        }
-        
-        .track-overview h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        
-        .track-overview p {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            line-height: 1.7;
-            color: #ccc;
-        }
-        
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-        
-        .skill-tag {
-            background: var(--metallic-gradient);
-            padding: 0.5rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .skill-tag:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            background: var(--metallic-hover);
-        }
-        
-        .resource-section {
-            padding: 2rem 5% 5rem;
-        }
-        
-        .resource-section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-        
-        .resource-section h3 {
-            text-align: center;
-            font-size: 1.4rem;
-            margin-bottom: 3rem;
-            color: #aaa;
-            font-weight: normal;
-        }
-        
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .video-card {
-            background: #1e1e1e;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-        
-        .video-thumbnail {
-            position: relative;
-            height: 180px;
-        }
-        
-        .video-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .play-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 3rem;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-        
-        .video-card:hover .play-icon {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-        
-        .video-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--accent-color);
-            color: #121212;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-        
-        .video-content {
-            padding: 1.5rem;
-        }
-        
-        .video-content h4 {
-            margin-bottom: 0.8rem;
-            color: white;
-            font-size: 1.2rem;
-        }
-        
-        .video-content p {
-            color: #bbb;
-            margin-bottom: 1.2rem;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-        
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #888;
-            font-size: 0.85rem;
-        }
-        
-        .resource-category {
-            margin-bottom: 3rem;
-        }
-        
-        .category-header {
-            border-bottom: 1px solid #333;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .category-header h3 {
-            margin: 0;
-            text-align: left;
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .category-header .view-all {
-            margin-left: auto;
-            background: var(--metallic-gradient);
-            padding: 0.5rem 1.2rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .category-header .view-all:hover {
-            background: var(--metallic-hover);
-            transform: translateY(-3px);
-        }
-        
-        .learning-path {
-            padding: 3rem 5%;
-            background: rgba(30, 30, 30, 0.5);
-            border-radius: 10px;
-            margin-bottom: 4rem;
-        }
-        
-        .learning-path h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
-        }
-        
+      /* Styles specific to Frontend page */
+      .frontend-hero {
+        min-height: 40vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("/api/placeholder/1600/800") center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .frontend-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+
+      .frontend-hero p {
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        color: #eee;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .track-overview {
+        padding: 4rem 5%;
+        text-align: center;
+      }
+
+      .track-overview h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+
+      .track-overview p {
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+        color: #ccc;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+
+      .skill-tag {
+        background: var(--metallic-gradient);
+        padding: 0.5rem 1.2rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: white;
+        transition: var(--transition);
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        background: var(--metallic-hover);
+      }
+
+      .resource-section {
+        padding: 2rem 5% 5rem;
+      }
+
+      .resource-section h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+      }
+
+      .resource-section h3 {
+        text-align: center;
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+        color: #aaa;
+        font-weight: normal;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+
+      .video-card {
+        background: #1e1e1e;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: var(--transition);
+        cursor: pointer;
+      }
+
+      .video-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      }
+
+      .video-thumbnail {
+        position: relative;
+        height: 180px;
+      }
+
+      .video-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 3rem;
+        opacity: 0.7;
+        transition: var(--transition);
+      }
+
+      .video-card:hover .play-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+
+      .video-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: var(--accent-color);
+        color: #121212;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .video-content {
+        padding: 1.5rem;
+      }
+
+      .video-content h4 {
+        margin-bottom: 0.8rem;
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      .video-content p {
+        color: #bbb;
+        margin-bottom: 1.2rem;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .video-meta {
+        display: flex;
+        justify-content: space-between;
+        color: #888;
+        font-size: 0.85rem;
+      }
+
+      .resource-category {
+        margin-bottom: 3rem;
+      }
+
+      .category-header {
+        border-bottom: 1px solid #333;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .category-header h3 {
+        margin: 0;
+        text-align: left;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+      }
+
+      .category-header .view-all {
+        margin-left: auto;
+        background: var(--metallic-gradient);
+        padding: 0.5rem 1.2rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        color: white;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .category-header .view-all:hover {
+        background: var(--metallic-hover);
+        transform: translateY(-3px);
+      }
+
+      .learning-path {
+        padding: 3rem 5%;
+        background: rgba(30, 30, 30, 0.5);
+        border-radius: 10px;
+        margin-bottom: 4rem;
+      }
+
+      .learning-path h2 {
+        text-align: center;
+        font-size: 2.2rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent-color);
+      }
+
+      .path-steps {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin: 4rem 0;
+        padding: 0 5%;
+      }
+
+      .path-steps::before {
+        content: "";
+        position: absolute;
+        top: 35px;
+        left: 10%;
+        right: 10%;
+        height: 4px;
+        background: linear-gradient(to right, var(--accent-color), #00b8e6);
+        z-index: 1;
+      }
+
+      .path-step {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 20%;
+      }
+
+      .step-number {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: var(--metallic-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+      }
+
+      .path-step:hover .step-number {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .step-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+
+      .step-desc {
+        font-size: 0.9rem;
+        color: #bbb;
+        text-align: center;
+      }
+
+      @media (max-width: 992px) {
         .path-steps {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin: 4rem 0;
-            padding: 0 5%;
+          flex-direction: column;
+          align-items: center;
+          gap: 3rem;
         }
-        
+
         .path-steps::before {
-            content: '';
-            position: absolute;
-            top: 35px;
-            left: 10%;
-            right: 10%;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent-color), #00b8e6);
-            z-index: 1;
+          top: 0;
+          bottom: 0;
+          left: 35px;
+          right: auto;
+          width: 4px;
+          height: auto;
+          background: linear-gradient(to bottom, var(--accent-color), #00b8e6);
         }
-        
+
         .path-step {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 20%;
+          flex-direction: row;
+          width: 100%;
+          text-align: left;
+          gap: 1.5rem;
         }
-        
+
         .step-number {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: var(--metallic-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
+          margin-bottom: 0;
         }
-        
-        .path-step:hover .step-number {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+        .step-content {
+          text-align: left;
         }
-        
-        .step-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-        
+
+        .step-title,
         .step-desc {
-            font-size: 0.9rem;
-            color: #bbb;
-            text-align: center;
+          text-align: left;
         }
-        
-        @media (max-width: 992px) {
-            .path-steps {
-                flex-direction: column;
-                align-items: center;
-                gap: 3rem;
-            }
-            
-            .path-steps::before {
-                top: 0;
-                bottom: 0;
-                left: 35px;
-                right: auto;
-                width: 4px;
-                height: auto;
-                background: linear-gradient(to bottom, var(--accent-color), #00b8e6);
-            }
-            
-            .path-step {
-                flex-direction: row;
-                width: 100%;
-                text-align: left;
-                gap: 1.5rem;
-            }
-            
-            .step-number {
-                margin-bottom: 0;
-            }
-            
-            .step-content {
-                text-align: left;
-            }
-            
-            .step-title, .step-desc {
-                text-align: left;
-            }
+      }
+
+      @media (max-width: 768px) {
+        .frontend-hero h1 {
+          font-size: 2.5rem;
         }
-        
-        @media (max-width: 768px) {
-            .frontend-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .track-overview h2, .resource-section h2, .learning-path h2 {
-                font-size: 2rem;
-            }
+
+        .track-overview h2,
+        .resource-section h2,
+        .learning-path h2 {
+          font-size: 2rem;
         }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <div class="logo">
-            <img src="/api/placeholder/200/80" alt="CodeLearn Logo">
-        </div>
-        <nav class="navbar">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="explore.html">Explore</a></li>
-                <li><a href="webdev.html" class="active">WebDev</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+      <div class="logo">
+        <img src="/api/placeholder/200/80" alt="CodeLearn Logo" />
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="webdev.html" class="active">WebDev</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="credit.html">Credits</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <section class="frontend-hero">
-            <div>
-                <h1>Frontend Development</h1>
-                <p>Master the art of building beautiful, responsive, and interactive user interfaces with HTML, CSS, JavaScript, and modern frameworks</p>
-                <button class="get-started-btn">Start Learning Now</button>
-            </div>
-        </section>
+      <section class="frontend-hero">
+        <div>
+          <h1>Frontend Development</h1>
+          <p>
+            Master the art of building beautiful, responsive, and interactive
+            user interfaces with HTML, CSS, JavaScript, and modern frameworks
+          </p>
+          <button class="get-started-btn">Start Learning Now</button>
+        </div>
+      </section>
 
-        <section class="track-overview">
-            <h2>What You'll Learn</h2>
-            <p>Frontend development is the practice of converting data to a graphical interface, through the use of HTML, CSS, and JavaScript, so that users can view and interact with that data. As a frontend developer, you'll be responsible for creating everything users see and interact with in their browsers.</p>
-            
-            <div class="skills-container">
-                <div class="skill-tag">HTML5</div>
-                <div class="skill-tag">CSS3</div>
-                <div class="skill-tag">JavaScript</div>
-                <div class="skill-tag">React</div>
-                <div class="skill-tag">Vue</div>
-                <div class="skill-tag">Angular</div>
-                <div class="skill-tag">SASS</div>
-                <div class="skill-tag">Responsive Design</div>
-                <div class="skill-tag">Accessibility</div>
-                <div class="skill-tag">Performance</div>
-                <div class="skill-tag">Web Animation</div>
-            </div>
-        </section>
-        
-        <section class="learning-path">
-            <h2>Recommended Learning Path</h2>
-            <div class="path-steps">
-                <div class="path-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <div class="step-title">HTML Foundations</div>
-                        <div class="step-desc">Learn the building blocks of all websites</div>
-                    </div>
-                </div>
-                <div class="path-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <div class="step-title">CSS Styling</div>
-                        <div class="step-desc">Master layouts, styles and responsive design</div>
-                    </div>
-                </div>
-                <div class="path-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <div class="step-title">JavaScript</div>
-                        <div class="step-desc">Add interactivity and dynamic functionality</div>
-                    </div>
-                </div>
-                <div class="path-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <div class="step-title">Frameworks</div>
-                        <div class="step-desc">Learn React, Vue, or Angular</div>
-                    </div>
-                </div>
-                <div class="path-step">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <div class="step-title">Advanced Topics</div>
-                        <div class="step-desc">Performance, testing, and best practices</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <section class="track-overview">
+        <h2>What You'll Learn</h2>
+        <p>
+          Frontend development is the practice of converting data to a graphical
+          interface, through the use of HTML, CSS, and JavaScript, so that users
+          can view and interact with that data. As a frontend developer, you'll
+          be responsible for creating everything users see and interact with in
+          their browsers.
+        </p>
 
-        <section class="resource-section">
-            <h2>Learning Resources</h2>
-            <h3>Hand-picked tutorials and courses to help you master frontend development</h3>
-            
-            <div class="resource-category">
-                <div class="category-header">
-                    <h3><i class="fas fa-code"></i> HTML & CSS Fundamentals</h3>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="HTML Tutorial">
-                            <div class="video-badge">Beginner</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>HTML Crash Course</h4>
-                            <p>Learn the basics of HTML5 structure, tags, and semantic elements in this comprehensive tutorial.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 1:25:30</span>
-                                <span><i class="fas fa-user"></i> Traversy Media</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="CSS Tutorial">
-                            <div class="video-badge">Beginner</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>CSS Grid & Flexbox</h4>
-                            <p>Master modern CSS layout techniques with Grid and Flexbox for responsive designs.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 2:15:45</span>
-                                <span><i class="fas fa-user"></i> Kevin Powell</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="Responsive Design">
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>Responsive Web Design</h4>
-                            <p>Learn how to build websites that look great on any device with media queries and flexible layouts.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 1:48:22</span>
-                                <span><i class="fas fa-user"></i> Web Dev Simplified</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="skills-container">
+          <div class="skill-tag">HTML5</div>
+          <div class="skill-tag">CSS3</div>
+          <div class="skill-tag">JavaScript</div>
+          <div class="skill-tag">React</div>
+          <div class="skill-tag">Vue</div>
+          <div class="skill-tag">Angular</div>
+          <div class="skill-tag">SASS</div>
+          <div class="skill-tag">Responsive Design</div>
+          <div class="skill-tag">Accessibility</div>
+          <div class="skill-tag">Performance</div>
+          <div class="skill-tag">Web Animation</div>
+        </div>
+      </section>
+
+      <section class="learning-path">
+        <h2>Recommended Learning Path</h2>
+        <div class="path-steps">
+          <div class="path-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <div class="step-title">HTML Foundations</div>
+              <div class="step-desc">
+                Learn the building blocks of all websites
+              </div>
             </div>
-            
-            <div class="resource-category">
-                <div class="category-header">
-                    <h3><i class="fab fa-js"></i> JavaScript Essentials</h3>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="JavaScript Basics">
-                            <div class="video-badge">Beginner</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>JavaScript for Beginners</h4>
-                            <p>A complete introduction to JavaScript fundamentals, syntax, and core concepts.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 3:12:40</span>
-                                <span><i class="fas fa-user"></i> Programming with Mosh</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="DOM Manipulation">
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>DOM Manipulation</h4>
-                            <p>Learn how to dynamically update HTML content using JavaScript and the Document Object Model.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 1:35:15</span>
-                                <span><i class="fas fa-user"></i> Coder Coder</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="JavaScript Projects">
-                            <div class="video-badge">Intermediate</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>15 JavaScript Projects</h4>
-                            <p>Build 15 different projects to solidify your JavaScript skills with practical examples.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 8:25:30</span>
-                                <span><i class="fas fa-user"></i> John Smilga</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="path-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <div class="step-title">CSS Styling</div>
+              <div class="step-desc">
+                Master layouts, styles and responsive design
+              </div>
             </div>
-            
-            <div class="resource-category">
-                <div class="category-header">
-                    <h3><i class="fab fa-react"></i> Frameworks & Libraries</h3>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="React Tutorial">
-                            <div class="video-badge">Popular</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>React Crash Course</h4>
-                            <p>Learn the fundamentals of React including components, hooks, state management and more.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 4:20:15</span>
-                                <span><i class="fas fa-user"></i> Academind</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="Vue Tutorial">
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>Vue.js for Beginners</h4>
-                            <p>Get started with Vue.js 3 and learn how to build modern, reactive web applications.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 3:45:20</span>
-                                <span><i class="fas fa-user"></i> The Net Ninja</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="Tailwind CSS">
-                            <div class="video-badge">Trending</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>Tailwind CSS Crash Course</h4>
-                            <p>Learn how to use this utility-first CSS framework to build modern interfaces quickly.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 1:15:45</span>
-                                <span><i class="fas fa-user"></i> Traversy Media</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="path-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <div class="step-title">JavaScript</div>
+              <div class="step-desc">
+                Add interactivity and dynamic functionality
+              </div>
             </div>
-            
-            <div class="resource-category">
-                <div class="category-header">
-                    <h3><i class="fas fa-laptop-code"></i> Advanced Frontend Concepts</h3>
-                    <a href="#" class="view-all">View All</a>
-                </div>
-                <div class="video-grid">
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="Web Performance">
-                            <div class="video-badge">Advanced</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>Web Performance Optimization</h4>
-                            <p>Learn techniques to make your websites load faster and run smoother for better user experience.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 2:30:10</span>
-                                <span><i class="fas fa-user"></i> Frontend Masters</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="Web Accessibility">
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>Web Accessibility (A11y)</h4>
-                            <p>Learn how to make your websites accessible to everyone, including people with disabilities.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 1:45:35</span>
-                                <span><i class="fas fa-user"></i> Kevin Powell</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="video-card">
-                        <div class="video-thumbnail">
-                            <img src="/api/placeholder/400/250" alt="Animation Techniques">
-                            <div class="video-badge">Creative</div>
-                            <div class="play-icon"><i class="fas fa-play-circle"></i></div>
-                        </div>
-                        <div class="video-content">
-                            <h4>Advanced CSS Animations</h4>
-                            <p>Master CSS animations, transitions, and learn to use libraries like GSAP for stunning effects.</p>
-                            <div class="video-meta">
-                                <span><i class="fas fa-clock"></i> 3:10:45</span>
-                                <span><i class="fas fa-user"></i> Dev Ed</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="path-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <div class="step-title">Frameworks</div>
+              <div class="step-desc">Learn React, Vue, or Angular</div>
             </div>
-        </section>
+          </div>
+          <div class="path-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <div class="step-title">Advanced Topics</div>
+              <div class="step-desc">
+                Performance, testing, and best practices
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="resource-section">
+        <h2>Learning Resources</h2>
+        <h3>
+          Hand-picked tutorials and courses to help you master frontend
+          development
+        </h3>
+
+        <div class="resource-category">
+          <div class="category-header">
+            <h3><i class="fas fa-code"></i> HTML & CSS Fundamentals</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="HTML Tutorial" />
+                <div class="video-badge">Beginner</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>HTML Crash Course</h4>
+                <p>
+                  Learn the basics of HTML5 structure, tags, and semantic
+                  elements in this comprehensive tutorial.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 1:25:30</span>
+                  <span><i class="fas fa-user"></i> Traversy Media</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="CSS Tutorial" />
+                <div class="video-badge">Beginner</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>CSS Grid & Flexbox</h4>
+                <p>
+                  Master modern CSS layout techniques with Grid and Flexbox for
+                  responsive designs.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 2:15:45</span>
+                  <span><i class="fas fa-user"></i> Kevin Powell</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="Responsive Design" />
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>Responsive Web Design</h4>
+                <p>
+                  Learn how to build websites that look great on any device with
+                  media queries and flexible layouts.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 1:48:22</span>
+                  <span><i class="fas fa-user"></i> Web Dev Simplified</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resource-category">
+          <div class="category-header">
+            <h3><i class="fab fa-js"></i> JavaScript Essentials</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="JavaScript Basics" />
+                <div class="video-badge">Beginner</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>JavaScript for Beginners</h4>
+                <p>
+                  A complete introduction to JavaScript fundamentals, syntax,
+                  and core concepts.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 3:12:40</span>
+                  <span><i class="fas fa-user"></i> Programming with Mosh</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="DOM Manipulation" />
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>DOM Manipulation</h4>
+                <p>
+                  Learn how to dynamically update HTML content using JavaScript
+                  and the Document Object Model.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 1:35:15</span>
+                  <span><i class="fas fa-user"></i> Coder Coder</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="JavaScript Projects" />
+                <div class="video-badge">Intermediate</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>15 JavaScript Projects</h4>
+                <p>
+                  Build 15 different projects to solidify your JavaScript skills
+                  with practical examples.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 8:25:30</span>
+                  <span><i class="fas fa-user"></i> John Smilga</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resource-category">
+          <div class="category-header">
+            <h3><i class="fab fa-react"></i> Frameworks & Libraries</h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="React Tutorial" />
+                <div class="video-badge">Popular</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>React Crash Course</h4>
+                <p>
+                  Learn the fundamentals of React including components, hooks,
+                  state management and more.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 4:20:15</span>
+                  <span><i class="fas fa-user"></i> Academind</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="Vue Tutorial" />
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>Vue.js for Beginners</h4>
+                <p>
+                  Get started with Vue.js 3 and learn how to build modern,
+                  reactive web applications.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 3:45:20</span>
+                  <span><i class="fas fa-user"></i> The Net Ninja</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="Tailwind CSS" />
+                <div class="video-badge">Trending</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>Tailwind CSS Crash Course</h4>
+                <p>
+                  Learn how to use this utility-first CSS framework to build
+                  modern interfaces quickly.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 1:15:45</span>
+                  <span><i class="fas fa-user"></i> Traversy Media</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="resource-category">
+          <div class="category-header">
+            <h3>
+              <i class="fas fa-laptop-code"></i> Advanced Frontend Concepts
+            </h3>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="video-grid">
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="Web Performance" />
+                <div class="video-badge">Advanced</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>Web Performance Optimization</h4>
+                <p>
+                  Learn techniques to make your websites load faster and run
+                  smoother for better user experience.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 2:30:10</span>
+                  <span><i class="fas fa-user"></i> Frontend Masters</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img src="/api/placeholder/400/250" alt="Web Accessibility" />
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>Web Accessibility (A11y)</h4>
+                <p>
+                  Learn how to make your websites accessible to everyone,
+                  including people with disabilities.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 1:45:35</span>
+                  <span><i class="fas fa-user"></i> Kevin Powell</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-card">
+              <div class="video-thumbnail">
+                <img
+                  src="/api/placeholder/400/250"
+                  alt="Animation Techniques"
+                />
+                <div class="video-badge">Creative</div>
+                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+              </div>
+              <div class="video-content">
+                <h4>Advanced CSS Animations</h4>
+                <p>
+                  Master CSS animations, transitions, and learn to use libraries
+                  like GSAP for stunning effects.
+                </p>
+                <div class="video-meta">
+                  <span><i class="fas fa-clock"></i> 3:10:45</span>
+                  <span><i class="fas fa-user"></i> Dev Ed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>About CodeLearn</h3>
-                <p>We provide aspiring developers with the best learning resources from around the web, curated by industry experts.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p><i class="fas fa-envelope"></i> info@codelearn.com</p>
-                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                <p><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Silicon Valley, CA 94043</p>
-            </div>
-            <div class="footer-section">
-                <h3>Connect With Us</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            <div class="footer-section">
-                <h3>Newsletter</h3>
-                <form class="contact-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>About CodeLearn</h3>
+          <p>
+            We provide aspiring developers with the best learning resources from
+            around the web, curated by industry experts.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>Copyright © 2025 @serenitech. All rights reserved.</p>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-envelope"></i> info@codelearn.com</p>
+          <p><i class="fas fa-phone"></i>+91 6377805448</p>
+          <p><i class="fas fa-map-marker-alt"></i> JAIPUR, RAJASTHAN</p>
         </div>
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Newsletter</h3>
+          <form class="contact-form">
+            <input type="email" placeholder="Enter your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright © 2025 @serenitech. All rights reserved.</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

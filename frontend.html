@@ -463,54 +463,56 @@
           <div class="video-grid">
             <div class="video-card">
               <div class="video-thumbnail">
-                <img src="/api/placeholder/400/250" alt="HTML Tutorial" />
+                <img src="images/html-css-brocode.jpg" alt="HTML Tutorial" 
+                style="object-fit: fill;"
+                />
                 <div class="video-badge">Beginner</div>
-                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="play-icon" id="html-css-brocode"><i class="fas fa-play-circle"></i></div>
               </div>
               <div class="video-content">
-                <h4>HTML Crash Course</h4>
+                <h4>HTML & CSS (English)</h4>
                 <p>
                   Learn the basics of HTML5 structure, tags, and semantic
                   elements in this comprehensive tutorial.
                 </p>
                 <div class="video-meta">
-                  <span><i class="fas fa-clock"></i> 1:25:30</span>
-                  <span><i class="fas fa-user"></i> Traversy Media</span>
+                  <span><i class="fas fa-clock"></i> 4:02:42</span>
+                  <span><i class="fas fa-user"></i> BRO Code</span>
                 </div>
               </div>
             </div>
             <div class="video-card">
               <div class="video-thumbnail">
-                <img src="/api/placeholder/400/250" alt="CSS Tutorial" />
+                <img src="images/css-apnacollege.jpg" alt="CSS Tutorial" 
+                style="object-fit: fill"/>
                 <div class="video-badge">Beginner</div>
-                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                <div class="play-icon" id="css-apnacollege" ><i class="fas fa-play-circle"></i></div>
               </div>
               <div class="video-content">
-                <h4>CSS Grid & Flexbox</h4>
+                <h4>Complete CSS in Hindi</h4>
                 <p>
                   Master modern CSS layout techniques with Grid and Flexbox for
                   responsive designs.
                 </p>
                 <div class="video-meta">
-                  <span><i class="fas fa-clock"></i> 2:15:45</span>
-                  <span><i class="fas fa-user"></i> Kevin Powell</span>
+                  <span><i class="fas fa-clock"></i> 7:18:23</span>
+                  <span><i class="fas fa-user"></i> Apna College</span>
                 </div>
               </div>
             </div>
             <div class="video-card">
               <div class="video-thumbnail">
-                <img src="/api/placeholder/400/250" alt="Responsive Design" />
-                <div class="play-icon"><i class="fas fa-play-circle"></i></div>
+                <img src="images/tailwind-codewithharry.jpg" alt="Responsive Design" style="object-fit: fill;" />
+                <div class="play-icon" id="tailwind-cwh" ><i class="fas fa-play-circle"></i></div>
               </div>
               <div class="video-content">
-                <h4>Responsive Web Design</h4>
+                <h4>Tailwind CSS</h4>
                 <p>
-                  Learn how to build websites that look great on any device with
-                  media queries and flexible layouts.
+                  Learn the Tailwind CSS framework to build custom designs
                 </p>
                 <div class="video-meta">
-                  <span><i class="fas fa-clock"></i> 1:48:22</span>
-                  <span><i class="fas fa-user"></i> Web Dev Simplified</span>
+                  <span><i class="fas fa-clock"></i> 7:18:23</span>
+                  <span><i class="fas fa-user"></i>Code with Harry</span>
                 </div>
               </div>
             </div>
@@ -747,5 +749,15 @@
         <p>Copyright © 2025 @serenitech. All rights reserved.</p>
       </div>
     </footer>
-  </body>
+  </body> <script>
+    document.querySelector("#html-css-brocode").addEventListener("click", () => {
+      window.open("https://youtu.be/HGTJBPNC-Gw", "_blank");})
+
+    document.querySelector("#css-apnacollege").addEventListener("click", () => {
+      window.open("https://youtu.be/ESnrn1kAD4E", "_blank");})
+
+    document.querySelector("#tailwind-cwh").addEventListener("click", () => {
+      window.open("https://youtu.be/-g969furGik", "_blank");})
+  </script>
+
 </html>

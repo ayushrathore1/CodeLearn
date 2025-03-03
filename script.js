@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!this.classList.contains("active")) {
         this.style.transform = "translateY(0)";
       }
-    });
+    });});
 
     // Set active class based on current page
     if (window.location.href.includes(link.getAttribute("href"))) {
@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Add click event to video cards
-    card.addEventListener("click", function () {
-      window.open("https://youtu.be/XmLOwJHFHf0?si=YWc6zqYP_pU1TFkx", "_blank");
-    });
-  });
+  //   card.addEventListener("click", function () {
+  //     window.open("https://youtu.be/XmLOwJHFHf0?si=YWc6zqYP_pU1TFkx", "_blank");
+  //   });
+  // });
 
   // Animate learning path cards on scroll
   const pathCards = document.querySelectorAll(".path-card");
@@ -238,3 +238,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+document
+  .querySelector("#html-chaiaurcode")
+  .addEventListener("click", function () {
+    window.open(
+      "https://www.youtube.com/watch?v=XmLOwJHFHf0&list=PLu71SKxNbfoDBNF5s-WH6aLbthSEIMhMI&index=1&pp=iAQB",
+      "_blank"
+    );
+  });
+
+
+document
+  .querySelector("#python-cwh")
+  .addEventListener("click", function () {
+    window.open(
+      "https://www.youtube.com/watch?v=UrsmFxEIp5k&t=581s&pp=ygUWcHl0aG9uIGNvZGUgd2l0aCBoYXJyeQ%3D%3D",
+      "_blank"
+    );
+  });
+
+
+document
+  .querySelector("#c++-chaiaurcode")
+  .addEventListener("click", function () {
+    window.open(
+      "https://www.youtube.com/watch?v=gCkPJTSZ9mU&pp=ygURY2hhaSBhdXIgY29kZSBjKys%3D",
+      "_blank"
+    );
+  });

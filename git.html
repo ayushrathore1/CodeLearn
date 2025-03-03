@@ -91,7 +91,8 @@
         line-height: 1.6;
       }
 
-      .language-btn {
+      .git-hindi-btn,
+      .git-english-btn {
         display: inline-block;
         padding: 0.7rem 1.5rem;
         background: var(--metallic-gradient);
@@ -100,8 +101,11 @@
         font-weight: 500;
         transition: var(--transition);
       }
-
-      .language-btn:hover {
+      .git-english-btn:hover {
+        background: var(--metallic-hover);
+        transform: translateY(-3px);
+      }
+      .git-hindi-btn:hover {
         background: var(--metallic-hover);
         transform: translateY(-3px);
       }
@@ -246,7 +250,7 @@
                 Learn Git & GitHub fundamentals, collaborative workflows, and
                 advanced techniques in English.
               </p>
-              <div class="language-btn">Start Learning</div>
+              <div class="git-english-btn">Start Learning</div>
             </div>
           </a>
 
@@ -260,8 +264,12 @@
             </div>
             <div class="language-content">
               <h3>हिंदी (Hindi)</h3>
-              <p>Complete git and Github course in Hindi</p>
-              <div class="language-btn">Start Learning</div>
+              <p>
+                Complete git and Github course in Hindi <br />
+                <br />
+              </p>
+
+              <div class="git-hindi-btn">Start Learning</div>
             </div>
           </a>
         </div>
@@ -308,4 +316,12 @@
       </div>
     </footer>
   </body>
+
+  <script>
+    document
+      .querySelector(".git-english-btn")
+      .addEventListener("click", function () {
+      window.open('https://youtu.be/tz82ola3oy0?si=DZiDc0kCwJWJL8oG', "_blank");
+      });
+  </script>
 </html>

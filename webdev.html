@@ -542,8 +542,8 @@
                     <!-- Video 1 -->
                     <div class="carousel-card">
                         <div class="carousel-thumbnail">
-                            <img src="chaiaurhtml.jpg" alt="HTML Course">
-                            <div class="carousel-play-icon">
+                            <img src="https://ik.imagekit.io/ayushrathore/Images/frontendchaiaurcode.jpg?updatedAt=1741083583791" alt="HTML Course">
+                            <div class="carousel-play-icon" id="html-chaiaurcode" >
                                 <i class="fas fa-play-circle"></i>
                             </div>
                         </div>
@@ -733,12 +733,12 @@
             });
             
             // Make video cards clickable to play videos
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    // Replace with the actual video URL
-                    window.open("https://youtu.be/XmLOwJHFHf0?si=YWc6zqYP_pU1TFkx", "_blank");
-                });
-            });
+            // cards.forEach(card => {
+            //     card.addEventListener('click', function() {
+            //         // Replace with the actual video URL
+            //         window.open("https://youtu.be/XmLOwJHFHf0?si=YWc6zqYP_pU1TFkx", "_blank");
+            //     });
+            // });
             
             // Update carousel on window resize
             window.addEventListener('resize', function() {
@@ -752,6 +752,10 @@
                 updateCarousel();
             });
         });
+
+        document.querySelector('#html-chaiaurcode').addEventListener("click", function () {
+            window.open("https://youtu.be/XmLOwJHFHf0?si=3mENseS-E8ymUPlj", "_blank");
+        })
     </script>
 </body>
 </html>

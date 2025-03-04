@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - CodeLearn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent-color: #00ccff;
+            --transition: all 0.3s ease;
+            --metallic-gradient: linear-gradient(135deg, #2c3e50, #4c5c68);
+            --metallic-hover: linear-gradient(135deg, #4c5c68, #2c3e50);
+            --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: rgba(18, 18, 18, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: var(--transition);
+        }
+
+        .navbar a:hover, .navbar a.active {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .coming-soon-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background-color: #121212;
+        }
+
+        .coming-soon-content {
+            width: 100%;
+            padding: 0 1rem;
+        }
+
+        .coming-soon-title-container {
+            width: 100%;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-soon-title {
+            font-size: 10rem;
+            line-height: 1;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00ccff, #0066ff, #9900ff);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            width: 100%;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .coming-soon-description {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: #bbb;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .go-back-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--metallic-gradient);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .go-back-btn:hover {
+            background: var(--metallic-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .coming-soon-title {
+                font-size: 5rem;
+            }
+            
+            .coming-soon-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="/api/placeholder/200/80" alt="CodeLearn Logo">
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="explore.html" class="active">Explore</a></li>
+                <li><a href="webdev.html">WebDev</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="credit.html">Credits</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="coming-soon-container">
+        <div class="coming-soon-content">
+            <div class="coming-soon-title-container">
+                <div class="coming-soon-title">COMING</div>
+                <div class="coming-soon-title">SOON</div>
+            </div>
+            <h2 class="coming-soon-subtitle">We're building something awesome</h2>
+            <p class="coming-soon-description">Our team of expert developers is working hard to create the highest quality learning resources for this topic. Check back soon for updates and new content that will help you master these skills!</p>
+            <a href="explore.html" class="go-back-btn">Back to Explore <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <script>
+        // Set current page in navbar
+        document.addEventListener('DOMContentLoaded', () => {
+            const pathName = window.location.pathname;
+            const currentPage = pathName.substring(pathName.lastIndexOf('/') + 1);
+            
+            const navLinks = document.querySelectorAll('.navbar a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

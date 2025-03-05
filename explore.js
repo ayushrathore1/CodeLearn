@@ -1,15 +1,13 @@
-// Add this to your existing script.js file or create a new one for explore page
 
-// Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", function () {
-  // Get search elements
+
   const searchBar = document.querySelector(".search-bar");
   const searchBtn = document.querySelector(".search-btn");
   const topicCards = document.querySelectorAll(".topic-card");
   const filterTabs = document.querySelectorAll(".filter-tab");
   const noResultsMessage = document.createElement("p");
 
-  // Set up no results message
+
   noResultsMessage.className = "no-results";
   noResultsMessage.textContent =
     "No learning paths found. Try a different search term.";
@@ -19,14 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
   noResultsMessage.style.fontSize = "1.2rem";
   noResultsMessage.style.display = "none";
 
-  // Insert after the topic grid
+ 
   const topicGrid = document.querySelector(".topic-grid");
   topicGrid.parentNode.insertBefore(noResultsMessage, topicGrid.nextSibling);
 
-  // Current active filter
+ 
   let activeFilter = "All Topics";
 
-  // Function to filter cards based on search input and category
+ 
   function filterCards() {
     const searchTerm = searchBar.value.toLowerCase();
     let visibleCount = 0;
@@ -36,8 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const description = card.querySelector("p").textContent.toLowerCase();
       const cardContent = title + " " + description;
 
-      // Get category information (could be extracted from classes or data attributes)
-      // For demonstration, we'll determine category based on the content
+      
       const isAdvanced =
         description.includes("master") || title.includes("Data Structures");
       const isIntermediate =
@@ -46,18 +43,18 @@ document.addEventListener("DOMContentLoaded", function () {
         title.includes("Cloud");
       const isBeginner = !isAdvanced && !isIntermediate;
 
-      // Check if card matches search term
+
       const matchesSearch =
         searchTerm === "" || cardContent.includes(searchTerm);
 
-      // Check if card matches active filter
+    
       const matchesFilter =
         activeFilter === "All Topics" ||
         (activeFilter === "Beginner" && isBeginner) ||
         (activeFilter === "Intermediate" && isIntermediate) ||
         (activeFilter === "Advanced" && isAdvanced);
 
-      // Show/hide based on both conditions
+    
       if (matchesSearch && matchesFilter) {
         card.style.display = "block";
         visibleCount++;
@@ -66,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Show message if no results
+
     if (visibleCount === 0) {
       noResultsMessage.style.display = "block";
     } else {
@@ -74,13 +71,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Add event listener to search button
+
   searchBtn.addEventListener("click", function (e) {
     e.preventDefault();
     filterCards();
   });
 
-  // Add event listener for pressing Enter in search bar
+
   searchBar.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -88,27 +85,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Add real-time search as user types (optional - can be commented out if preferred)
+ 
   searchBar.addEventListener("input", function () {
     filterCards();
   });
 
-  // Add event listeners to filter tabs
+ 
   filterTabs.forEach((tab) => {
     tab.addEventListener("click", function () {
-      // Update active state
+   
       filterTabs.forEach((t) => t.classList.remove("active"));
       this.classList.add("active");
 
-      // Update active filter
+    
       activeFilter = this.textContent;
 
-      // Apply filtering
       filterCards();
     });
   });
 
-  // Add highlight animation to search results
   function highlightMatches(searchTerm) {
     if (!searchTerm) return;
 
@@ -117,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const title = card.querySelector("h3");
         const description = card.querySelector("p");
 
-        // Apply temporary highlight class
+      
         card.classList.add("search-highlight");
         setTimeout(() => {
           card.classList.remove("search-highlight");
@@ -126,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Add search animation
+
   searchBtn.addEventListener("click", function () {
     this.classList.add("search-pulse");
     setTimeout(() => {
@@ -136,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
     highlightMatches(searchBar.value.toLowerCase());
   });
 
-  // Add clear search functionality
+
   const clearButton = document.createElement("button");
   clearButton.className = "clear-search";
   clearButton.innerHTML = '<i class="fas fa-times"></i>';
@@ -152,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   searchBar.parentNode.appendChild(clearButton);
 
-  // Show/hide clear button based on search input
+  
   searchBar.addEventListener("input", function () {
     clearButton.style.display = this.value ? "block" : "none";
   });
@@ -163,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     filterCards();
   });
 
-  // Add these styles for animations
+
   const style = document.createElement("style");
   style.textContent = `
     .search-highlight {
@@ -193,17 +188,17 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const loader = document.getElementById("page-loader");
 
-  // Hide loader when page is fully loaded
+
   window.addEventListener("load", function () {
     setTimeout(() => {
       loader.classList.add("hidden");
-    }, 300); // Small delay to ensure smooth transition
+    }, 300); 
   });
 
-  // Show loader when clicking navigation links
+
   document.querySelectorAll(".navbar a, .track-tab").forEach((link) => {
     link.addEventListener("click", function (e) {
-      // Only show loader if not already on the target page
+     
       if (this.href !== window.location.href) {
         loader.classList.remove("hidden");
       }

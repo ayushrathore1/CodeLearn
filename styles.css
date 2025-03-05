@@ -40,6 +40,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
+    /* background: url(https://ik.imagekit.io/ayushrathore/nasa-Q1p7bh3SHj8-unsplash.jpg?updatedAt=1741198737192) center/cover no-repeat; */
     background: var(--metallic-gradient);
     position: sticky;
     top: 0;
@@ -103,7 +104,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('/api/placeholder/1600/900') center/cover no-repeat;
+    background: url('https://ik.imagekit.io/ayushrathore/nasa-Q1p7bh3SHj8-unsplash.jpg?updatedAt=1741198737192') center/cover no-repeat;
     position: relative;
 }
 

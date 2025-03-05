@@ -1,6 +1,6 @@
-// Wait for the DOM to load
 document.addEventListener("DOMContentLoaded", function () {
-  // Navbar animation and active state
+
+  
   const navLinks = document.querySelectorAll(".navbar ul li a");
 
   navLinks.forEach((link) => {
@@ -14,27 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });});
 
-    // Set active class based on current page
+   
     if (window.location.href.includes(link.getAttribute("href"))) {
       link.classList.add("active");
     }
   });
 
-  // Get Started button animation
+ 
   const getStartedBtn = document.querySelector(".get-started-btn");
   if (getStartedBtn) {
     getStartedBtn.addEventListener("click", function () {
-      // Add pulse animation
+      
       this.classList.add("pulse");
 
-      // Redirect to explore page after animation
+      
       setTimeout(() => {
         window.location.href = "explore.html";
       }, 500);
     });
   }
 
-  // Add wave effect to typing text
+
   const typingText = document.querySelector(".typing-text");
   if (typingText) {
     const text = typingText.textContent;
@@ -48,14 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Video card animations
+
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
     card.addEventListener("mouseenter", function () {
       this.style.transform = "translateY(-10px)";
       this.style.boxShadow = "0 15px 30px rgba(0, 0, 0, 0.4)";
 
-      // Animate the play button
+   
       const playIcon = this.querySelector(".play-icon");
       if (playIcon) {
         playIcon.style.opacity = "1";
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.style.transform = "translateY(0)";
       this.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.3)";
 
-      // Reset play button
+
       const playIcon = this.querySelector(".play-icon");
       if (playIcon) {
         playIcon.style.opacity = "0.7";
@@ -75,16 +75,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Add click event to video cards
+  
   //   card.addEventListener("click", function () {
   //     window.open("https://youtu.be/XmLOwJHFHf0?si=YWc6zqYP_pU1TFkx", "_blank");
   //   });
   // });
 
-  // Animate learning path cards on scroll
+
   const pathCards = document.querySelectorAll(".path-card");
 
-  // Function to check if element is in viewport
+
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Function to handle scroll animation
+ 
   function handleScrollAnimation() {
     pathCards.forEach((card) => {
       if (isInViewport(card)) {
@@ -105,18 +105,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Add animation class
+
   pathCards.forEach((card) => {
     card.classList.add("pre-animation");
   });
 
-  // Listen for scroll events
+
   window.addEventListener("scroll", handleScrollAnimation);
 
-  // Initial check for elements in viewport
+
   handleScrollAnimation();
 
-  // Contact form validation and submission
+
   const contactForm = document.querySelector(".contact-form");
   if (contactForm) {
     contactForm.addEventListener("submit", function (e) {
@@ -125,13 +125,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const emailInput = this.querySelector('input[type="email"]');
       const email = emailInput.value.trim();
 
-      // Simple email validation
+     
       if (email === "") {
         alert("Please enter your email address.");
         return false;
       }
 
-      // Simulate form submission
+      
       alert(
         `Thank you! Your email (${email}) has been subscribed to our newsletter.`
       );
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Add smooth scrolling to all links
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
@@ -157,12 +157,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Page transition effects
+
   window.addEventListener("pageshow", function () {
     document.body.classList.add("fade-in");
   });
 
-  // Pre-load page transitions
+
   const allLinks = document.querySelectorAll('a:not([target="_blank"])');
   allLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
@@ -178,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Add CSS for transitions
 const style = document.createElement("style");
 style.textContent = `
     body {
@@ -221,17 +220,17 @@ document.head.appendChild(style);
 document.addEventListener("DOMContentLoaded", function () {
   const loader = document.getElementById("page-loader");
 
-  // Hide loader when page is fully loaded
+
   window.addEventListener("load", function () {
     setTimeout(() => {
       loader.classList.add("hidden");
-    }, 300); // Small delay to ensure smooth transition
+    }, 300);
   });
 
-  // Show loader when clicking navigation links
+  
   document.querySelectorAll(".navbar a, .track-tab").forEach((link) => {
     link.addEventListener("click", function (e) {
-      // Only show loader if not already on the target page
+      
       if (this.href !== window.location.href) {
         loader.classList.remove("hidden");
       }

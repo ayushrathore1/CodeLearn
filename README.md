@@ -3,11 +3,11 @@
 Console.log("Hello World!, This is Team SereniTech"); 
 
 ```
-# What is CodeLearn ? 
+# What is CodeLearnn ? 
 CodeLearn Is A Platform Which Provides Students To Find The Best Resources To Learn The Programming.
 
-## About CodeLearn 
-> CodeLearn is a platform to help students to find the right resources to learn coding. \
+## About CodeLearnn 
+> CodeLearnn is a platform to help students to find the right resources to learn coding. \
 > It features various sections like WEB Development, DSA, Machine Learning, APP Development and even Git/Github and even more technologies. \
 > We, the team SereniTech, are constantly working to add more resources to the CodeLearn.
 
